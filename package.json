@@ -1,11 +1,12 @@
 {
   "name": "youmigrate",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "A NodeJS application to migrate Youtube Subscriptions from one account to another.",
   "main": "app.js",
   "scripts": {
     "test": "test",
-    "start": "node app.js"
+    "start": "node app.js",
+    "semantic-release": "semantic-release"
   },
   "keywords": [
     "youtube",
@@ -18,10 +19,19 @@
   "dependencies": {
     "exit": "^0.1.2",
     "express": "^4.13.3",
-    "googleapis": "^23.0.0",
+    "googleapis": "^110.0.0",
     "opener": "^1.4.1",
     "progress": "^1.1.8",
-    "unirest": "^0.4.2",
-    "youtube-api": "^2.0.9"
+    "unirest": "^0.6.0",
+    "youtube-api": "^3.0.1"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.2",
+    "@semantic-release/git": "^10.0.1",
+    "semantic-release": "^19.0.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rashmigowda95/YouMigrate.git"
   }
 }
