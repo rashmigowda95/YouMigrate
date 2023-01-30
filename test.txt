@@ -3,7 +3,7 @@
 echo "Checking commit-message format..."
 
 ## the first arg is the path to the git commit temporary file
-TEMPORARY_FILE_PATH=$1
+TMPORARY_FILE_PATH=$1
 
 ## get commit-message from the temporary file
 COMMIT_MSG=`head -n1 $TEMPORARY_FILE_PATH`
