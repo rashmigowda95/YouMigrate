@@ -1,17 +1,24 @@
 #!/usr/bin/env bash
 
-# set this to your active development branch
-develop_branch="master"
-current_branch="$(git rev-parse --abbrev-ref HEAD)"
+echo "Checking commit-message format..."
 
-# only check commit messages on main development branch
-[ "$current_branch" != "$develop_branch" ] && exit 0
+## the first arg is the path to the git commit temporary file
+TEMPORARY_FILE_PATH=$1
 
-# regex to validate in commit msg
-commit_regex="((feat|fix|perf)\(WEB\-[0-9]{5}\)|(chore\(release\)))\:.*"
-error_msg="Aborting commit. Your commit message is missing either a JIRA Issue ('WAP-1111') or 'Merge'"
+## get commit-message from the temporary file
+COMMIT_MSG=`head -n1 $TEMPORARY_FILE_PATH`
 
-if ! grep -iqE "$commit_regex" "$1"; then
-    echo "$error_msg" >&2
+## init regex to match commit-message format
+REGEX="((feat|fix|perf)\(WEB\-[0-9]{5}\)|(chore\(release\)))\:.*"
+
+## checking commit-message format
+if ! [[ $COMMIT_MSG =~ $REGEX ]];then
+    echo -e "Your commit-message format is not valid:\n$COMMIT_MSG\n"
+    echo "Valid format examples:"
+    echo "[PSBO-123] My commit message"
+    echo "[hotfix] My commit message"
     exit 1
+else
+    echo "Well done! Your commit-message is valid."
+    exit 0
 fi
